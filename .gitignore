@@ -1,0 +1,5 @@
+# Node modules (si usas algo extra)
+node_modules/
+
+# Archivos temporales
+*.tmp
