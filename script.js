@@ -8,7 +8,7 @@ function checkPassword() {
     }
 }
 
-// Lógica del pupiletras (word search)
+// Lógica del pupiletras (word search) - Corregida para asegurar renderizado
 const gridSize = 10;
 const words = ['AMOR', 'CORAZON', 'BESO', 'FLORES']; // Palabras románticas
 let grid = [];
@@ -17,12 +17,12 @@ let foundWords = [];
 let score = 0;
 
 function generateGrid() {
-    // Genera una cuadrícula con letras aleatorias y coloca palabras
+    // Genera una cuadrícula con letras aleatorias y coloca palabras horizontalmente
     grid = Array(gridSize).fill().map(() => Array(gridSize).fill(''));
-    // Coloca palabras (simplificado: horizontal)
     words.forEach(word => {
         let placed = false;
-        while (!placed) {
+        let attempts = 0;
+        while (!placed && attempts < 100) { // Limita intentos para evitar bucles infinitos
             const row = Math.floor(Math.random() * gridSize);
             const col = Math.floor(Math.random() * (gridSize - word.length));
             let canPlace = true;
@@ -35,6 +35,7 @@ function generateGrid() {
                 }
                 placed = true;
             }
+            attempts++;
         }
     });
     // Llena el resto con letras aleatorias
@@ -47,6 +48,7 @@ function generateGrid() {
 
 function renderGrid() {
     const gridElement = document.getElementById('grid');
+    if (!gridElement) return; // Evita errores si el elemento no existe
     gridElement.innerHTML = '';
     for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
