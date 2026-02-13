@@ -43,7 +43,7 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Animación para la carta en dedicatoria */
+/* Animación corregida para la carta: rota y luego desvanece el texto */
 .carta {
     position: relative;
     width: 400px;
@@ -64,12 +64,12 @@ a:hover {
 
 .texto-carta {
     padding: 20px;
-    display: none;
-    animation: mostrarTexto 2s 3s forwards;
+    opacity: 0; /* Inicialmente invisible */
+    animation: mostrarTexto 2s 3s forwards; /* Empieza después de 3s */
 }
 
 @keyframes mostrarTexto {
-    to { display: block; opacity: 1; }
+    to { opacity: 1; } /* Se desvanece en */
 }
 
 /* Estilos para el reproductor de música estilo Spotify */
